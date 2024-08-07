@@ -63,7 +63,7 @@ h2 {
   white-space: nowrap;
 }
 
-#submitButton, #readButton {
+#submitButton, .readButton {
     appearance: none;
     background-color: #b39269;
     border-width: 0;
@@ -112,7 +112,7 @@ h2 {
   width: 100%;
 }
 
-#submitButton:before, #readButton:before {
+#submitButton:before, .readButton:before {
 animation: opacityFallbackOut .5s step-end forwards;
 backface-visibility: hidden;
 background-color: #deb683;
@@ -128,22 +128,23 @@ transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .
 width: 100%;
 }
 
-#bookButton:hover:before, #submitButton:hover:before, #readButton:hover:before {
+#bookButton:hover:before, #submitButton:hover:before, .readButton:hover:before {
   animation: opacityFallbackIn 0s step-start forwards;
   clip-path: polygon(0 0, 101% 0, 101% 101%, 0 101%);
 }
 
-#bookButton:after, #submitButton:after, #readButton:after {
+#bookButton:after, #submitButton:after, .readButton:after {
   background-color: #FFFFFF;
 }
 
-#bookButton span, #submitButton span, #readButton span {
+#bookButton span, #submitButton span, .readButton span {
   z-index: 1;
   position: relative;
 }
 
 .bottomCont {
     display: flex;
+    flex: 1, 1,;
 }
 
 .tableCont {
@@ -160,7 +161,7 @@ width: 100%;
 
 .tableContainer {
     padding: 20px;
-    overflow: hidden;
+    
 }
 
 .formCont {
@@ -258,5 +259,5 @@ th, td {
 }
 
 .readConfirm {
-    background-color: #b39269;
+    background-color: #80674a;
 }

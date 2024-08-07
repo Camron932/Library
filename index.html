@@ -6,7 +6,7 @@
     <title>Library</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body onload="renderTable()">
 
     <div class="titleCont">
             <h1>Library</h1>
@@ -16,7 +16,7 @@
     <div class="bottomCont">
         <div class="tableCont">
             <div class="tableContainer">
-            <table>
+            <table id="tableMain">
                 <tr>
                     <th class="tableHeads">Title</th>
                     <th class="tableHeads">Author</th>
@@ -24,14 +24,6 @@
                     <th class="tableHeads">Rating</th>
                     <th class="tableHeads">Read</th>
                     <th class="tableHeads"> </th>
-                </tr>
-                <tr class="bookRead readConfirm">
-                    <td class="tableColumns">Ender's Game</th>
-                    <td class="tableColumns">Orson Scott Card</th>
-                    <td class="tableColumns">324</th>
-                    <td class="tableColumns">5</th>
-                    <td class="tableColumns"><button id="readButton"><span id="buttonText">Read</span></button></th>
-                    <td class="tableColumns"> </th>
                 </tr>
             </table>
             </div>
