@@ -1,8 +1,6 @@
 const form = document.getElementById("form");
 const bookButton = document.getElementById("bookButton");
 const submitButton = document.getElementById("submitButton");
-const buttonText = document.getElementById("buttonText");
-const bookRead = document.getElementsByClassName("bookRead");
 const isRead = document.getElementById("yes");
 const unread = document.getElementById("no");
 const table = document.getElementById("tableMain");
@@ -48,16 +46,6 @@ function addBookToLibrary() {
     myLibrary.push(newBook);
 }
 
-function readCheck(index) {
-    if (buttonText.innerHTML === "Read") {
-        buttonText.innerHTML = "Unread";
-        bookRead[index].classList.remove("readConfirm");
-    } else {
-        buttonText.innerHTML = "Read"
-        bookRead[index].classList.add("readConfirm");
-    }
-}
-
 function renderTable() {
     table.innerHTML = 
         `<tr>
@@ -79,22 +67,46 @@ function renderTable() {
         let cell5 = row.insertCell()
         let cell6 = row.insertCell()
 
+        if (isRead.checked === true) {
+            row.className = "bookRead readConfirm";
+        } else {
+            row.className = "bookRead";
+        }
+        row.id = `row${index}`;
+    
+
         cell1.innerHTML = book.bookTitle
         cell2.innerHTML = book.author
         cell3.innerHTML = book.bookLength
         cell4.innerHTML = book.rating
-        cell5.innerHTML = `<button class="readButton" id="${index}"><span id="text${index}">Read</span></button>`
-        cell6.innerHTML = `<button class="readButton" id="remove${index}"><span>Remove</span></button>`
 
-        const readButton = document.getElementById(`${index}`);
-        const removeButton = document.getElementById(`remove${index}`);
+        if (isRead.checked === true) {
+            cell5.innerHTML = `<button class="readButton" id="${index}"><span id="text${index}">Read</span></button>`
+        } else {
+            cell5.innerHTML = `<button class="readButton" id="${index}"><span id="text${index}">Unread</span></button>`
+        }
 
-        readButton.onclick = function(index) {
-            readCheck(index);
+        cell6.innerHTML = `<button class="removeButton" id="remove${index}"><span>Remove</span></button>`
+
+    const readButton = document.getElementById(`${index}`);
+    const removeButton = document.getElementById(`remove${index}`);
+    const buttonText = document.getElementById(`text${index}`);
+    const rowHighlight = document.getElementById(`row${index}`);
+
+    readButton.onclick = function(index) {
+        if (buttonText.innerHTML === "Read") {
+            buttonText.innerHTML = "Unread";
+            rowHighlight.classList.remove("readConfirm");
+        } else {
+            buttonText.innerHTML = "Read"
+            rowHighlight.classList.add("readConfirm");
         }
-        removeButton.onclick = function(r) {
-            let i = r.parentNode.parentNode.rowIndex;
-            table.deleteRow(i);
-        }
-    })
+    };
+        
+    removeButton.addEventListener ('click', function() {
+        let currentIndex = `${index}`;
+        myLibrary.splice(currentIndex, 1)
+        renderTable()
+   })
+})
 }
